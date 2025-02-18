@@ -5,17 +5,14 @@ import java.util.Map;
 
 public class LionAlex extends Lion {
 
-    private Feline feline;
-
-
     public LionAlex(String sex, Feline feline) throws Exception {
         super(sex, feline);
     }
 
-    public Map<String, String> getFriends(){
-        return  Map.of("Зебра", "Марти",
-                "Бегемотиха", "Глория",
-                "Жираф", "Мелман");
+    public List<String> getFriends(){
+        return  List.of("Зебра Марти",
+                "Бегемотиха Глория",
+                "Жираф Мелман");
     }
 
     public String getPlaceOfLiving(){

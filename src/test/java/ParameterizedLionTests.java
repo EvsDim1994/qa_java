@@ -1,5 +1,6 @@
 import com.example.Feline;
 import com.example.Lion;
+import com.example.LionAlex;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +17,7 @@ public class ParameterizedLionTests {
     public final Boolean expectedHasMane;
     public final int expectedKittens;
     public final List<String> expectedFood;
+    private Lion lion;
 
     public ParameterizedLionTests(String sex, Boolean expectedHasMane, int expectedKittens, List<String> expectedFood) {
         this.sex = sex;
@@ -33,25 +35,30 @@ public class ParameterizedLionTests {
     }
 
     @Before
-    public void init() {
+    public void init() throws Exception {
         MockitoAnnotations.initMocks(this);
-    }
-
-    @Test
-    public void testLionBehavior() throws Exception {
         Feline feline = Mockito.mock(Feline.class);
         Mockito.when(feline.getKittens()).thenReturn(expectedKittens);
         Mockito.when(feline.getFood("Хищник")).thenReturn(expectedFood);
+        lion = new Lion(sex, feline);
+    }
 
-        Lion lion = new Lion(sex, feline);
-
+    @Test
+    public void testHasMane(){
         // Проверяем наличие гривы
         Assert.assertEquals(expectedHasMane, lion.doesHaveMane());
+    }
 
+    @Test
+    public void testGetKittens(){
         // Проверяем количество котят
         Assert.assertEquals(expectedKittens, lion.getKittens());
+    }
 
+    @Test
+    public void testGetFood() throws Exception {
         // Проверяем еду
         Assert.assertEquals(expectedFood, lion.getFood());
     }
+
 }

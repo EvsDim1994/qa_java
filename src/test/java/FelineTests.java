@@ -1,20 +1,25 @@
 import com.example.Animal;
 import com.example.Feline;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
 
-@RunWith(MockitoJUnitRunner.class)
 public class FelineTests {
 
-    @Spy
-    Feline feline;
+    private Feline feline;
+
+    @Before
+    public void init() {
+        feline = new Feline();
+    }
 
     @Test
     public void testEatMeat() throws Exception {
@@ -35,11 +40,4 @@ public class FelineTests {
     public void testGetKittensWithNumbers(){
         Assert.assertEquals(5, feline.getKittens(5));
     }
-
-    @Test(expected = Exception.class)
-    public void testFelineThrowsException() throws Exception {
-        Mockito.when(feline.eatMeat()).thenThrow(new Exception());
-        feline.eatMeat();
-    }
-
 }

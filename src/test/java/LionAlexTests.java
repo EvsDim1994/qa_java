@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.Map;
+import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LionAlexTests {
@@ -23,9 +23,9 @@ public class LionAlexTests {
 
     @Test
     public void testAlexGetFriends() {
-        Assert.assertEquals(Map.of("Зебра", "Марти",
-                "Бегемотиха", "Глория",
-                "Жираф", "Мелман"), lionAlex.getFriends());
+        Assert.assertEquals(List.of("Зебра Марти",
+                "Бегемотиха Глория",
+                "Жираф Мелман"), lionAlex.getFriends());
     }
 
     @Test
